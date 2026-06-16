@@ -1,0 +1,17 @@
+/* ============================================
+   THE CREATORY — HOME PAGE (TABLET ≤1024px)
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .home-hero-inner { grid-template-columns: 1fr; gap: 50px; }
+  .home-hero { min-height: auto; padding: 120px 6% 80px; }
+  .home-hero h1 { font-size: 3rem; }
+  .home-about-inner { grid-template-columns: 1fr; gap: 50px; }
+  .home-svc-grid { grid-template-columns: 1fr 1fr; }
+  .home-case-grid { grid-template-columns: 1fr 1fr; }
+  .home-test-grid { grid-template-columns: 1fr 1fr; }
+  .home-team-grid { grid-template-columns: 1fr 1fr; }
+  .home-services-top { flex-direction: column; align-items: flex-start; }
+  .tc-contact-inner { grid-template-columns: 1fr; gap: 50px; }
+  .tc-form-row { grid-template-columns: 1fr 1fr; }
+}

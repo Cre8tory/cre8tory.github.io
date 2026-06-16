@@ -1,0 +1,29 @@
+/* ============================================
+   THE CREATORY — HOME PAGE (MOBILE ≤600px)
+   ============================================ */
+
+@media (max-width: 600px) {
+  .tc-nav-links { display: none; }
+  .home-hero { padding: 100px 5% 60px; }
+  .home-hero h1 { font-size: 2.4rem; }
+  .home-hero-sub { font-size: 0.95rem; }
+  .home-stats-grid { grid-template-columns: 1fr 1fr; }
+  .home-about-stats { grid-template-columns: 1fr 1fr; }
+  .home-svc-grid { grid-template-columns: 1fr; }
+  .home-case-grid { grid-template-columns: 1fr; }
+  .home-test-grid { grid-template-columns: 1fr; }
+  .home-team-grid { grid-template-columns: 1fr; }
+  .tc-form-row { grid-template-columns: 1fr; }
+  .tc-ticker { padding: 12px 5%; }
+  .tc-ticker-label { display: none; }
+  .home-about { padding: 60px 5%; }
+  .home-services { padding: 60px 5%; }
+  .home-cases { padding: 60px 5%; }
+  .home-testimonials { padding: 60px 5%; }
+  .home-team { padding: 60px 5%; }
+  .tc-contact { padding: 60px 5%; }
+  .tc-cta-band { padding: 60px 5%; }
+  .tc-footer { padding: 36px 5% 20px; }
+  .tc-footer-inner { flex-direction: column; align-items: flex-start; }
+  .tc-footer-links { flex-wrap: wrap; gap: 1rem; }
+}
