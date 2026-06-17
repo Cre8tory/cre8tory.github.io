@@ -1,17 +1,246 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Creatory | Tourism Marketing Specialists</title>
-    
-    <!-- THIS IS THE MISSING LINK TO YOUR CSS -->
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
+<link rel="stylesheet" href="index.css">
+<style>
+/* ================================================
+   NAV — DESKTOP (default, no media query)
+   ================================================ */
+.tc-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(246,245,243,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(45,62,69,0.15);
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+.tc-nav-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 1001;
+}
+.tc-logo-svg { height: 28px; width: auto; }
 
+/* Desktop link list */
+.tc-nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: 2.2rem;
+  list-style: none;
+  align-items: center;
+  margin: 0; padding: 0;
+}
+.tc-nav-links a {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7A9099;
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.tc-nav-links a:hover,
+.tc-nav-links a.active { color: #2D3E45; }
 
-<!-- NAV -->
+/* CTA pill */
+.tc-nav-cta {
+  background: #2D3E45 !important;
+  color: #fff !important;
+  padding: 0.5rem 1.3rem !important;
+  border-radius: 2px !important;
+  font-weight: 500 !important;
+}
+.tc-nav-cta:hover { background: #374D55 !important; }
+
+/* Services dropdown */
+.tc-dropdown { position: relative; }
+.tc-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1002;
+  min-width: 210px;
+}
+.tc-dropdown:hover .tc-dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+}
+.tc-dropdown-menu a {
+  display: block;
+  background: #fff;
+  padding: 0.75rem 1.2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7A9099 !important;
+  border-bottom: 1px solid rgba(45,62,69,0.1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tc-dropdown-menu a:first-child { border-radius: 3px 3px 0 0; }
+.tc-dropdown-menu a:last-child  { border-bottom: none; border-radius: 0 0 3px 3px; }
+.tc-dropdown-menu a:hover       { background: #F6F5F3; color: #2D3E45 !important; }
+
+/* Animate to X */
+.tc-menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.tc-menu-toggle.open span:nth-child(2) { opacity: 0; }
+.tc-menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ================================================
+   MOBILE NAV (≤ 768px)
+   ================================================ */
+@media (max-width: 768px) {
+  .tc-menu-toggle { display: flex; }
+
+  .tc-nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    position: absolute;
+    top: 70px;
+    left: 0; right: 0;
+    background: rgba(246,245,243,0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(45,62,69,0.12);
+    box-shadow: 0 8px 24px rgba(45,62,69,0.08);
+    padding: 0.5rem 0 1rem;
+  }
+  .tc-nav-links.open { display: flex; }
+
+  .tc-nav-links li { border-bottom: 1px solid rgba(45,62,69,0.07); }
+  .tc-nav-links li:last-child { border-bottom: none; }
+
+  .tc-nav-links > li > a {
+    display: block;
+    padding: 0.9rem 6%;
+    font-size: 0.8rem;
+    color: #2D3E45;
+    letter-spacing: 0.1em;
+  }
+
+  /* Services dropdown becomes flat list */
+  .tc-dropdown-menu {
+    position: static;
+    opacity: 1;
+    pointer-events: all;
+    padding-top: 0;
+    transform: none;
+    min-width: 0;
+  }
+  .tc-dropdown-menu a {
+    padding: 0.65rem 10%;
+    font-size: 0.72rem;
+    background: rgba(45,62,69,0.04);
+    color: #7A9099 !important;
+    border-bottom: 1px solid rgba(45,62,69,0.06);
+    border-radius: 0 !important;
+  }
+  .tc-dropdown-menu a:last-child { border-bottom: none; }
+
+  /* CTA full width */
+  .tc-nav-links .tc-nav-cta {
+    display: block !important;
+    margin: 0.75rem 6% 0 !important;
+    padding: 0.8rem 1rem !important;
+    text-align: center !important;
+    border-radius: 2px !important;
+  }
+}
+
+/* ================================================
+   FULL MOBILE LAYOUT (≤ 768px)
+   ================================================ */
+@media (max-width: 768px) {
+
+  /* Hero stacks vertically */
+  .home-hero {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 50px 5% 50px !important;
+    align-items: flex-start !important;
+  }
+   .home-hero-content { width: 100% !important; }
+  .home-hero h1 { font-size: 2.1rem !important; line-height: 1.2 !important; margin-bottom: 1rem !important; }
+  .home-eyebrow { font-size: 0.65rem !important; margin-bottom: 1.2rem !important; white-space: normal !important; }
+  .home-hero-sub { font-size: 0.92rem !important; margin-bottom: 1.8rem !important; }
+  .home-hero-panel { width: 100% !important; max-width: 100% !important; }
+  .home-stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .home-stat { padding: 1.2rem 1rem !important; }
+  .home-stat-num { font-size: 1.6rem !important; }
+  .home-stat-lbl { font-size: 0.7rem !important; }
+
+  /* Ticker wraps neatly */
+  .tc-ticker { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 14px 5%; }
+  .tc-ticker-label { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; margin-bottom: 0.25rem; width: 100%; }
+  .tc-ticker-items { gap: 0.75rem; }
+
+  /* About section */
+  .home-about { padding: 60px 5% !important; }
+  .home-about-inner { flex-direction: column !important; gap: 40px; }
+  .home-about-stats { grid-template-columns: 1fr 1fr !important; }
+
+  /* Services 1 column */
+  .home-services { padding: 60px 5% !important; }
+  .home-svc-grid { grid-template-columns: 1fr !important; }
+  .home-services-top { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+
+  /* Case studies 1 column */
+  .home-cases { padding: 60px 5% !important; }
+  .home-case-grid { grid-template-columns: 1fr !important; }
+
+  /* Testimonials 1 column */
+  .home-testimonials { padding: 60px 5% !important; }
+  .home-test-grid { grid-template-columns: 1fr !important; }
+
+  /* Team 1 column */
+  .home-team { padding: 60px 5% !important; }
+  .home-team-grid { grid-template-columns: 1fr !important; }
+
+  /* CTA band */
+  .tc-cta-band { padding: 60px 5% !important; }
+  .tc-cta-band h2 { font-size: 1.7rem !important; }
+  .tc-btn-white, .tc-btn-ghost {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0.5rem 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Contact form */
+  .tc-contact { padding: 60px 5% !important; }
+  .tc-contact-inner { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .tc-form-row { grid-template-columns: 1fr !important; }
+  .tc-fgroup input,
+  .tc-fgroup textarea,
+  .tc-fgroup select {
+    width: 100% !important;
+    font-size: 1rem !important; /* prevents iOS zoom on focus */
+  }
+
+  /* Footer stacks */
+  .tc-footer { padding: 36px 5% 20px !important; }
+  .tc-footer-inner { flex-direction: column !important; align-items: flex-start !important; gap: 1.2rem !important; }
+  .tc-footer-links { flex-wrap: wrap !important; gap: 0.75rem 1.5rem !important; }
+  .tc-logo-svg-footer { height: 20px !important; }
+
+  /* General overflow guard */
+  body { overflow-x: hidden; }
+  img, svg, iframe { max-width: 100%; }
+}
+</style>
+
 <nav class="tc-nav">
   <a href="/" class="tc-nav-logo">
     <svg class="tc-logo-svg" viewBox="0 0 300 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,15 +248,23 @@
       <line x1="118" y1="39" x2="252" y2="39" stroke="#2D3E45" stroke-width="1.2"/>
     </svg>
   </a>
-  <ul class="tc-nav-links">
+
+  <!-- Hamburger button — hidden on desktop, shown on mobile -->
+  <button class="tc-menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="tc-nav-links" id="navLinks">
     <li><a href="/" class="active">Home</a></li>
     <li class="tc-dropdown">
       <a href="#">Services ▾</a>
       <div class="tc-dropdown-menu">
-        <a href="social-media.html">Social Media Management</a>
-        <a href="press-pr.html">Press &amp; PR</a>
-        <a href="paid-ads.html">Paid Advertising</a>
-        <a href="consultancy.html">Marketing Consultancy</a>
+        <a href="/social-media.html">Social Media Management</a>
+        <a href="/press-pr.html">Press &amp; PR</a>
+        <a href="/paid-ads.html">Paid Advertising</a>
+        <a href="/consultancy.html">Marketing Consultancy</a>
       </div>
     </li>
     <li><a href="#team">About</a></li>
@@ -35,14 +272,35 @@
   </ul>
 </nav>
 
+<script>
+  // Hamburger toggle
+  const toggle = document.getElementById('menuToggle');
+  const nav    = document.getElementById('navLinks');
+
+  toggle.addEventListener('click', function () {
+    const isOpen = nav.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close menu when any nav link is tapped
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      nav.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
 <!-- HERO -->
 <section class="home-hero">
   <div class="home-hero-inner">
     <div class="home-hero-content">
-      <div class="home-eyebrow"> UK based · Tourism specialists</div>
+      <div class="home-eyebrow">UK-based · Tourism specialists</div>
       <h1>We grow <em>tourism businesses</em> through strategy &amp; storytelling</h1>
       <p class="home-hero-sub">From boutique glamping sites to visitor attractions — we deliver the social media, PR and paid advertising that fills your calendars and builds your brand.</p>
-      <a href="#contact" class="tc-btn-white">Book a free consultation</a>
+      <a href="#contact" class="tc-btn-white">Lets Chat</a>
       <a href="#cases" class="home-btn-ghost">See our results</a>
     </div>
     <div class="home-hero-panel">
@@ -58,14 +316,14 @@
         </div>
         <div class="home-stat">
           <div class="home-stat-num">18k+</div>
-          <div class="home-stat-lbl"> organic social visits in 6 months</div>
+          <div class="home-stat-lbl">Social visits in 6 months</div>
         </div>
         <div class="home-stat">
           <div class="home-stat-num">10+</div>
           <div class="home-stat-lbl">Years in UK tourism</div>
         </div>
       </div>
-      <div class="home-panel-footer">clients across the UK</div>
+      <div class="home-panel-footer">UK-based · clients across the UK</div>
     </div>
   </div>
 </section>
@@ -98,25 +356,7 @@
       <p><strong>No jargon. No waffle. No faff.</strong></p>
       <a href="#contact" class="tc-btn-brand home-about-cta">Let's have a chat →</a>
     </div>
-    <div class="home-about-stats">
-      <div class="home-about-stat">
-        <div class="home-about-num">687k</div>
-        <div class="home-about-lbl">People reached in a single campaign</div>
-      </div>
-      <div class="home-about-stat">
-        <div class="home-about-num">5×</div>
-        <div class="home-about-lbl">Average return on ad spend</div>
-      </div>
-      <div class="home-about-stat">
-        <div class="home-about-num">18k+</div>
-        <div class="home-about-lbl">Website visits from social in 6 months</div>
-      </div>
-      <div class="home-about-stat">
-        <div class="home-about-num">10+</div>
-        <div class="home-about-lbl">Years in UK tourism marketing</div>
-      </div>
-    </div>
-  </div>
+   
 </section>
 
 <!-- SERVICES -->
@@ -135,12 +375,12 @@
         <h3>Social Media Management</h3>
         <p>Strategic content creation, photography and videography that builds a genuine audience and drives bookings.</p>
         <div class="home-svc-tags">
-          <span class="home-svc-tag">Social Media Management</span>
+          <span class="home-svc-tag">Content calendars</span>
           <span class="home-svc-tag">Photography</span>
           <span class="home-svc-tag">Videography</span>
         </div>
       </a>
-      <a href="/press and pr" class="home-svc-card">
+      <a href="/press-pr" class="home-svc-card">
         <span class="home-svc-num">02</span>
         <h3>Press &amp; PR</h3>
         <p>Earned coverage in national and local titles — from The Times to regional lifestyle press and journalist visits.</p>
@@ -157,6 +397,7 @@
         <div class="home-svc-tags">
           <span class="home-svc-tag">Meta ads</span>
           <span class="home-svc-tag">Google PPC</span>
+          <span class="home-svc-tag">ROI tracking</span>
         </div>
       </a>
       <a href="/consultancy" class="home-svc-card">
@@ -223,7 +464,7 @@
             <div class="home-metric-lbl">Social visits in 6 months</div>
           </div>
           <div class="home-case-metric">
-            <div class="home-metric-num">6 yrs</div>
+            <div class="home-metric-num">4 yrs</div>
             <div class="home-metric-lbl">Ongoing partnership</div>
           </div>
         </div>
@@ -314,12 +555,9 @@
     <h2 class="tc-h2 light">A small agency. <em>Personal service.</em></h2>
     <p class="home-team-sub">You'll always deal with Mark and Sarah directly — no account managers, no handoffs.</p>
     <div class="home-team-grid">
-      
-      <!-- MARK'S CARD -->
       <div class="home-team-card">
         <div class="home-team-photo">
-          <!-- All lowercase folder, file name, and extension -->
-          <img src="images/mark.jpeg" alt="Mark Hooper - Creative Director" class="team-avatar">
+          <img src="images/mark.jpeg" alt="Mark Hooper" class="team-avatar">
         </div>
         <div class="home-team-info">
           <h3>Mark Hooper</h3>
@@ -327,12 +565,9 @@
           <p>Over 10 years in UK tourism. Mark's expertise lies in business development, communications, and long-term growth strategy — he shapes the big picture for every client.</p>
         </div>
       </div>
-
-      <!-- SARAH'S CARD -->
       <div class="home-team-card">
         <div class="home-team-photo">
-          <!-- All lowercase folder, file name, and extension -->
-          <img src="images/sarah.png" alt="Sarah Creighton - Creative Director" class="team-avatar">
+            <img src="images/sarah.png" alt="Sarah Creighton" class="team-avatar">
         </div>
         <div class="home-team-info">
           <h3>Sarah Creighton</h3>
@@ -340,7 +575,6 @@
           <p>Over 8 years in digital marketing, specialising in social media, videography and photography. Sarah brings the creative ideas that make clients genuinely stand out.</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -350,6 +584,7 @@
   <h2>Ready to grow your tourism business?</h2>
   <p>Book a free 30-minute consultation — no obligation, no hard sell. Just an honest conversation about where your marketing could take you.</p>
   <a href="#contact" class="tc-btn-white">Book a free consultation</a>
+  <a href="tel:01743885281" class="tc-btn-ghost">Call 01743 885281</a>
 </div>
 
 <!-- CONTACT -->
@@ -361,7 +596,7 @@
       <p>Tell us about your business and what you're trying to achieve. We'll be honest about what we can do for you and how.</p>
       <div class="tc-cinfo">
         <span class="tc-cinfo-label">Phone</span>
-        <a href="tel:01743885281">07528 860569</a> &nbsp;/&nbsp;
+        <a href="tel:">07528 860569</a> &nbsp;/&nbsp;
         <a href="tel:07903210553">07903 210553</a>
       </div>
       <div class="tc-cinfo">
@@ -422,14 +657,14 @@
       <line x1="118" y1="39" x2="252" y2="39" stroke="#FFFFFF" stroke-width="1"/>
     </svg>
     <div class="tc-footer-links">
-      <a href="social-media.html">Social Media</a>
-      <a href="press-pr.html">Press &amp; PR</a>
-      <a href="paid-ads.html">Paid Advertising</a>
-      <a href="consultancy.html">Consultancy</a>
+      <a href="/social-media.html">Social Media</a>
+      <a href="/press-pr.html">Press &amp; PR</a>
+      <a href="/paid-ads.html">Paid Advertising</a>
+      <a href="/consultancy.html">Consultancy</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
-  <div class="tc-footer-copy">© 2026 The Creatory Shropshire LTD · 53 Gains Avenue, Shrewsbury, Shropshire SY3 5AN</div>
+  <div class="tc-footer-copy">© 2026 The Creatory · The Creatory Shropshire LTD · 53 Gains Avenue, Shrewsbury, Shropshire SY3 5AN</div>
 </footer>
 </body>
 </html>

@@ -45,15 +45,22 @@
       <line x1="118" y1="39" x2="252" y2="39" stroke="#2D3E45" stroke-width="1.2"/>
     </svg>
   </a>
-  <ul class="tc-nav-links">
+
+  <button class="tc-menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="tc-nav-links" id="navLinks">
     <li><a href="/" class="active">Home</a></li>
     <li class="tc-dropdown">
       <a href="#">Services ▾</a>
       <div class="tc-dropdown-menu">
-        <a href="/social-media">Social Media Management</a>
-        <a href="/press and pr">Press &amp; PR</a>
-        <a href="/paid-ads">Paid Advertising</a>
-        <a href="/consultancy">Marketing Consultancy</a>
+        <a href="/social-media.html">Social Media Management</a>
+        <a href="/press-pr.html">Press &amp; PR</a>
+        <a href="/paid-ads.html">Paid Advertising</a>
+        <a href="/consultancy.html">Marketing Consultancy</a>
       </div>
     </li>
     <li><a href="#team">About</a></li>
@@ -62,8 +69,8 @@
 </nav>
 
 <!-- HERO BLOCK MATCHING THE PRESS PAGE EDITORIAL STYLE -->
-<section class="home-hero" style="background: #2D3E45; color: white; min-height: auto; padding: 180px 6% 80px 6%; position: relative;">
-  <div class="home-hero-inner" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center;">
+<section class="service-hero">
+  <div class="service-hero-inner">
     <div>
       <div class="tc-section-tag light">Organic Growth</div>
       <h1 style="font-family: var(--serif); font-size: 3.5rem; line-height: 1.2; margin-top: 1rem;">Content that stops the scroll & <em>fills booking calendars</em></h1>
@@ -71,7 +78,7 @@
     </div>
     
     <!-- Right Content Metric Panel Matching Press Style -->
-    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 2rem; border-radius: 4px;">
+    <div class="service-panel">
       <h4 style="text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">Core Capabilities</h4>
       <div style="display: flex; flex-direction: column; gap: 12px; font-family: var(--serif); font-size: 1.3rem;">
         <span style="opacity: 0.85;">· Short-Form Video (Reels/TikTok)</span>
@@ -93,7 +100,7 @@
     </div>
 
     <!-- MAIN TWO-COLUMN SPLIT -->
-    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: start;">
+<div class="service-split">
       
       <!-- Left Narrative Text Column -->
       <div style="line-height: 1.8;">
@@ -114,7 +121,7 @@
 
         
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: #F8F9F9; padding: 1.5rem; border-radius: 4px; border: 1px solid #EBEDEF; margin-top: 40px;">
+<div class="service-stats">
           <div>
             <div style="font-size: 1.8rem; font-family: var(--serif); color: #2D3E45; font-weight: bold; line-height: 1.2;">Drives 10k+</div>
             <div style="font-size: 1.4rem; font-family: var(--serif); color: #2D3E45; font-weight: bold; margin-bottom: 0.5rem;">monthly</div>
@@ -200,14 +207,34 @@
       <line x1="118" y1="39" x2="252" y2="39" stroke="#FFFFFF" stroke-width="1"/>
     </svg>
     <div class="tc-footer-links">
-      <a href="/social-media">Social Media</a>
-      <a href="/press-pr">Press &amp; PR</a>
-      <a href="/paid-ads">Paid Advertising</a>
-      <a href="/consultancy">Consultancy</a>
+      <a href="/social-media.html">Social Media</a>
+      <a href="/press-pr.html">Press &amp; PR</a>
+      <a href="/paid-ads.html">Paid Advertising</a>
+      <a href="/consultancy.html">Consultancy</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
   <div class="tc-footer-copy">© 2026 The Creatory Shropshire LTD · 53 Gains Avenue, Shrewsbury, Shropshire SY3 5AN</div>
 </footer>
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('navLinks');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      const isOpen = nav.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
 </body>
 </html>
