@@ -373,7 +373,7 @@ body { font-family: var(--sans); background: var(--offwhite); color: var(--brand
   .tc-nav-links.open {
     display: flex;
   }
-}/* Hamburger — hidden on desktop */
+/* Hamburger — hidden on desktop */
 .tc-menu-toggle {
   display: none;
   flex-direction: column;

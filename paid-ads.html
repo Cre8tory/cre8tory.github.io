@@ -9,17 +9,23 @@
 <body style="margin: 0; padding: 0; background: #2D3E45;">
 
   <!-- 1. NAVIGATION BLOCK -->
-  <nav class="tc-nav" style="position: absolute; top: 0; left: 0; right: 0; width: 100%; z-index: 100; background: rgba(246, 245, 243, 0.97); padding: 20px 6%;">
-    <a href="index.html" class="tc-nav-logo">
+  <nav class="tc-nav">
+    <a href="/" class="tc-nav-logo">
       <svg class="tc-logo-svg" viewBox="0 0 300 42" fill="none" xmlns="http://www.w3.org/2000/svg">
         <text x="2" y="32" font-family="'Jost','Outfit',sans-serif" font-weight="300" font-size="30" letter-spacing="6" fill="#1C2A30">THE CREATORY</text>
         <line x1="118" y1="39" x2="252" y2="39" stroke="#1C2A30" stroke-width="1.2"/>
       </svg>
     </a>
-    <ul class="tc-nav-links">
-      <li><a href="index.html" style="color: #1C2A30;">Home</a></li>
+  <button class="tc-menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+    <ul class="tc-nav-links" id="navLinks">
+      <li><a href="/" class="active">Home</a></li>
       <li class="tc-dropdown">
-        <a href="#" class="active" style="color: #1C2A30;">Services ▾</a>
+        <a href="#">Services ▾</a>
         <div class="tc-dropdown-menu">
           <a href="social-media.html">Social Media Management</a>
           <a href="press-pr.html">Press &amp; PR</a>
@@ -27,7 +33,7 @@
           <a href="consultancy.html">Marketing Consultancy</a>
         </div>
       </li>
-      <li><a href="index.html#team" style="color: #1C2A30;">About</a></li>
+      <li><a href="team">About</a></li>
       <li><a href="#contact" class="tc-nav-cta">Book a call</a></li>
     </ul>
   </nav>
@@ -207,5 +213,25 @@
     </div>
     <div class="tc-footer-copy">© 2026 The Creatory Shropshire LTD · Ironmaster House, 37 Wyle Cop, Shrewsbury, Shropshire, England, SY1 1XF</div>
   </footer>
+  <script>
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('navLinks');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      const isOpen = nav.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
 </body>
 </html>
